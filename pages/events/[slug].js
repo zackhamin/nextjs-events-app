@@ -1,6 +1,11 @@
 import { useRouter } from "next/router";
+import Layout from "../../components/Layout";
 
 export default function EventPage() {
   const router = useRouter();
-  return <h1>My event</h1>;
+  return (
+    <Layout title="My event">
+      <h1>My event</h1>
+    </Layout>
+  );
 }
