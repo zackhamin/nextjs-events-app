@@ -1,5 +1,5 @@
 import Head from "../node_modules/next/head";
-import styles from "../styles/Layout.module.css";
+import styles from "@/styles/Layout.module.css";
 import GlobalHeader from "./Header";
 import GlobalFooter from "./Footer";
 

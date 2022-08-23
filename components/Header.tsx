@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "../node_modules/next/link";
-import styles from "../styles/Header.module.css";
+import styles from "@/styles/Header.module.css";
 
 export default function GlobalHeader() {
   return (
