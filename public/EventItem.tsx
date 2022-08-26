@@ -4,11 +4,17 @@ import styles from "../styles/eventItem.module.css";
 import defaultImage from "../public/event-default.png";
 
 export default function EventItem({ evt }) {
-  console.log(evt.image);
+  //console.log(evt;
+
   return (
     <div className={styles.event}>
       <div>
-        <Image alt="DJ picture" src={evt.image} width={170} height={100} />
+        <Image
+          alt="DJ picture"
+          src={evt.image.data.attributes.url}
+          width={170}
+          height={100}
+        />
       </div>
 
       <div className={styles.info}>

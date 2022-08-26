@@ -9,7 +9,7 @@ export default function Home({ events }) {
       <h1>Upcoming events</h1>
       {events.length === 0 && <h3>Currently no events</h3>}
       {events.map((event) => (
-        <EventItem key={event.id} evt={event} />
+        <EventItem key={event.id} evt={event.attributes} />
       ))}
       {events.length > 0 && (
         <Link href="/events">
@@ -21,10 +21,12 @@ export default function Home({ events }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${API_URL}/api/events`);
+  const res = await fetch(
+    `${API_URL}/api/events?_sort=date:ASC&_limit=3&populate=*`
+  );
   const events = await res.json();
 
   return {
-    props: { events: events.slice(0, 3) },
+    props: { events: events.data },
   };
 }

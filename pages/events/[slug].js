@@ -8,8 +8,8 @@ import Image from "next/image";
 import Pic1 from "../../public/sample/event1.jpg";
 
 export default function EventPage({ event }) {
-  console.log(event);
-  const evt = event[0];
+  const evt = event.data;
+  console.log(evt);
 
   const deleteEvent = () => {
     console.log("Event deleted");
@@ -20,18 +20,18 @@ export default function EventPage({ event }) {
     <Layout title="My event">
       <div className={styles.event}>
         <div className={styles.controls}>
-          <Link href={`/events/edit/${evt.id}`}>
+          {/* <Link href={`/api/events/edit/${evt.id}`}>
             <a>
               <FaPencilAlt />
             </a>
-          </Link>
+          </Link> */}
           <a href="#" className={styles.delete} onClick={deleteEvent}>
             <FaTimes />
             Delete
           </a>
         </div>
 
-        <span>
+        {/* <span>
           {evt.date} @ {evt.time}
         </span>
         <h1>{evt.name}</h1>
@@ -49,14 +49,14 @@ export default function EventPage({ event }) {
 
         <Link href="/events">
           <a className={styles.back}>{"<"}Go Back</a>
-        </Link>
+        </Link> */}
       </div>
     </Layout>
   );
 }
 
 export async function getServerSideProps({ query: { slug } }) {
-  const res = await fetch(`${API_URL}/api/events/${slug}`);
+  const res = await fetch(`${API_URL}/api/events?slug=${slug}`);
   const event = await res.json();
 
   return {
