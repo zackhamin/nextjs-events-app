@@ -5,39 +5,39 @@ import styles from "../../styles/Event.module.css";
 import Link from "next/link";
 import { FaPencilAlt, FaTimes } from "react-icons/fa";
 import Image from "next/image";
-import Pic1 from "../../public/sample/event1.jpg";
 
 export default function EventPage({ event }) {
-  const evt = event.data;
-  console.log(evt);
+  const evt = event.data[0].attributes;
 
-  const deleteEvent = () => {
-    console.log("Event deleted");
-    console.log(evt);
-  };
+  const deleteEvent = () => {};
 
   return (
     <Layout title="My event">
       <div className={styles.event}>
         <div className={styles.controls}>
-          {/* <Link href={`/api/events/edit/${evt.id}`}>
+          <Link href={`/api/events/edit/${evt.id}`}>
             <a>
               <FaPencilAlt />
             </a>
-          </Link> */}
+          </Link>
           <a href="#" className={styles.delete} onClick={deleteEvent}>
             <FaTimes />
             Delete
           </a>
         </div>
 
-        {/* <span>
-          {evt.date} @ {evt.time}
+        <span>
+          {new Date(evt.date).toLocaleDateString("en-UK")} @ {evt.time}
         </span>
         <h1>{evt.name}</h1>
         {evt.image && (
           <div className={styles.image}>
-            <Image src={Pic1} width={900} height={600} alt="image of party" />
+            <Image
+              src={evt.image.data.attributes.formats.large.url}
+              width={900}
+              height={600}
+              alt="image of party"
+            />
           </div>
         )}
 
@@ -49,14 +49,16 @@ export default function EventPage({ event }) {
 
         <Link href="/events">
           <a className={styles.back}>{"<"}Go Back</a>
-        </Link> */}
+        </Link>
       </div>
     </Layout>
   );
 }
 
 export async function getServerSideProps({ query: { slug } }) {
-  const res = await fetch(`${API_URL}/api/events?slug=${slug}`);
+  const res = await fetch(
+    `${API_URL}/api/events?filters[slug]slug=${slug}&populate=*`
+  );
   const event = await res.json();
 
   return {

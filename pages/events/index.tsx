@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import { API_URL } from "config/index";
 import EventItem from "public/EventItem";
 
-export default function Events({ events }) {
+export default function EventsPage({ events }) {
   return (
     <Layout>
       <h1>Events</h1>

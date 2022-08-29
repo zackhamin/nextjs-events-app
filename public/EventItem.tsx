@@ -4,8 +4,6 @@ import styles from "../styles/eventItem.module.css";
 import defaultImage from "../public/event-default.png";
 
 export default function EventItem({ evt }) {
-  //console.log(evt;
-
   return (
     <div className={styles.event}>
       <div>
@@ -19,7 +17,7 @@ export default function EventItem({ evt }) {
 
       <div className={styles.info}>
         <span>
-          {evt.date} @ {evt.time}
+          {new Date(evt.date).toLocaleDateString("en-UK")} @ {evt.time}
         </span>
         <h3>{evt.name}</h3>
       </div>
