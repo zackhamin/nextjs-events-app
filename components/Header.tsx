@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "../node_modules/next/link";
 import styles from "@/styles/Header.module.css";
+import Search from "./Search";
 
 export default function GlobalHeader() {
   return (
@@ -10,6 +11,7 @@ export default function GlobalHeader() {
           <a>Fair Events</a>
         </Link>
       </div>
+      <Search />
       <nav>
         <ul>
           <li>
